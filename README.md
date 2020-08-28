@@ -13,3 +13,16 @@
 - YOLO detection for vehicles
 - Simple frontend to demonstrate the vehicles state (like Control center in movie !!!)
 
+
+
+
+
+
+## CityFlow installation guide
+- use linux system easy
+- go to the cityflow and follow instruction 
+- config file path = 'examples/config.json'
+- in index.html, do not upload `roadnetFile.json`, use `replay_roadnet.json` which is generated after creating the engine object 
+
+
+
