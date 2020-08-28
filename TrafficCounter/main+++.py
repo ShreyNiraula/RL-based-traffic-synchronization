@@ -17,12 +17,17 @@ memory = {}
 
 # line = [(59, 555), (964, 578)]		#line for VID 1
 # line = [(88, 582), (740, 590)]		#line for VID 2
-# line = [(290, 542), (1163, 531)]		#line for VID 3
+#line = [(290, 542), (1163, 531)]		#line for VID 3
 # line = [(47, 495), (1221, 500)]		#line for VID 4
 # line = [(137, 500), (1073, 500)]		#line for VID 5
+line1 = [(85, 330), (280, 340)]
+line2 = [(365, 294), (630, 300)]
+line3 = [(720, 315), (1040, 315)]
 
-line = [(115, 315), (623, 343)]
-counter = 0
+
+counter1 = 0
+counter2 = 0
+counter3 = 0
 
 ##
 bicycle = 0
@@ -220,33 +225,50 @@ while True:
 				p1 = (int(x2 + (w2-x2)/2), int(y2 + (h2-y2)/2))
 				cv2.line(frame, p0, p1, color, 1)
 
-				if intersect(p0, p1, line[0], line[1]):
-					counter += 1
-					if LABELS[classIDSS[i]] == 'bicycle':
-						bicycle += 1
-					if LABELS[classIDSS[i]] == 'car':
-						car += 1
-					if LABELS[classIDSS[i]] == 'motorbike':
-						motorbike += 1
-					if LABELS[classIDSS[i]] == 'bus':
-						bus += 1
-					if LABELS[classIDSS[i]] == 'truck':
-						truck += 1
+				if intersect(p0, p1, line1[0], line1[1]):
+					counter1 += 1
+					# if LABELS[classIDSS[i]] == 'bicycle':
+					# 	bicycle += 1
+					# if LABELS[classIDSS[i]] == 'car':
+					# 	car += 1
+					# if LABELS[classIDSS[i]] == 'motorbike':
+					# 	motorbike += 1
+					# if LABELS[classIDSS[i]] == 'bus':
+					# 	bus += 1
+					# if LABELS[classIDSS[i]] == 'truck':
+					# 	truck += 1
+				if intersect(p0, p1, line2[0], line2[1]):
+					counter2 += 1
 
-			text = (LABELS[classIDSS[i]]) + ": " + 'ID:' + str(indexIDs[i])
+				if intersect(p0, p1, line3[0], line3[1]):
+					counter3 += 1
+
+			# text = (LABELS[classIDSS[i]]) + ": " + 'ID:' + str(indexIDs[i])
+			text = 'ID:' + str(indexIDs[i])
 	 		# text1 = "{}".format(indexIDs[i])
 			cv2.putText(frame, str(text), (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 			i += 1
 
 	# draw line
-	cv2.line(frame, line[0], line[1], (0, 255, 255), 4)
+	cv2.line(frame, line1[0], line1[1], (255, 255, 255), 4)
+
+	cv2.line(frame, line2[0], line2[1], (0, 255, 255), 4)
+
+	cv2.line(frame, line3[0], line3[1], (0, 255, 100), 4)
 
 	# draw counter and other class counts
     #syntax of puttext
     #cv2.putText(image, text to print, (xstart,ystart), font , Size, color, xxx)
 	cv2.rectangle(frame, (0,0), (1280, 90), (0, 0, 200), -1)
-	tmp_text = '||Vechicle: ' + str(counter) + '|| ' +'||Bicycle: ' + str(bicycle) + '|| ' + '||Car: ' + str(car) + '|| ' + '||Bike: ' + str(motorbike) + '|| ' + '||Bus: ' + str(bus) + '|| ' + '||Truck: ' + str(truck) + '|| '
+	# tmp_text = '||Vechicle: ' + str(counter) + '|| ' +'||Bicycle: ' + str(bicycle) + '|| ' + '||Car: ' + str(car) + '|| ' + '||Bike: ' + str(motorbike) + '|| ' + '||Bus: ' + str(bus) + '|| ' + '||Truck: ' + str(truck) + '|| '
+	tmp_text = '||VechicleCount1: ' + str(counter1) + '||'
 	cv2.putText(frame, str(tmp_text), (70,50), cv2.FONT_HERSHEY_DUPLEX, 1.0, (255, 255, 255), 2)
+
+	tmp_text = '||VechicleCount2: ' + str(counter2) + '||'
+	cv2.putText(frame, str(tmp_text), (500,50), cv2.FONT_HERSHEY_DUPLEX, 1.0, (0, 255, 255), 2)
+
+	tmp_text = '||VechicleCount3: ' + str(counter3) + '||'
+	cv2.putText(frame, str(tmp_text), (900,50), cv2.FONT_HERSHEY_DUPLEX, 1.0, (0, 255, 100), 2)
 	# counter += 1
 
 	# saves image file
@@ -280,5 +302,6 @@ while True:
 
 # release the file pointers
 print("[INFO] cleaning up...")
+print(type(writer))
 writer.release()
 vs.release()
