@@ -4,12 +4,7 @@ from collections import deque
 import tensorflow as tf
 from tensorflow import keras
 import random
-
-#Create Gym
-from gym import wrappers
-envCartPole = gym.make('CartPole-v1')
-envCartPole.seed(50) #Set the seed to keep the environment consistent across runs
-
+from environment import Simulator
 
 #Global Variables
 EPISODES = 500
@@ -24,6 +19,8 @@ def learning_rate(): #Alpha
 
 def batch_size(): #Size of the batch used in the experience replay
     return 24
+
+sim = Simulator('config.json') # create simulation env.
 
 class DeepQNetwork():
     def __init__(self, states, actions, alpha, gamma, epsilon,epsilon_min, epsilon_decay):
@@ -110,8 +107,8 @@ class DeepQNetwork():
             self.epsilon *= self.epsilon_decay
 
 #Create the agent
-nS = envCartPole.observation_space.shape[0] #This is only 4
-nA = envCartPole.action_space.n #Actions
+nS = len(sim.get_states())
+nA = len(sim.get_actions())
 dqn = DeepQNetwork(nS, nA, learning_rate(), discount_rate(), 1, 0.001, 0.995 )
 
 batch_size = batch_size()
@@ -121,12 +118,12 @@ rewards = [] #Store rewards for graphing
 epsilons = [] # Store the Explore/Exploit
 TEST_Episodes = 0
 for e in range(EPISODES):
-    state = envCartPole.reset()
+    state = sim.get_states()
     state = np.reshape(state, [1, nS]) # Resize to store in memory to pass to .predict
     tot_rewards = 0
     for time in range(210): #200 is when you "solve" the game. This can continue forever as far as I know
         action = dqn.action(state)
-        nstate, reward, done, _ = envCartPole.step(action)
+        nstate, reward, done, _ = sim.run_single_step()
         nstate = np.reshape(nstate, [1, nS])
         tot_rewards += reward
         dqn.store(state, action, reward, nstate, done) # Resize to store in memory to pass to .predict
@@ -150,12 +147,12 @@ for e in range(EPISODES):
 
 #Test the agent that was trained
 for e_test in range(TEST_Episodes):
-    state = envCartPole.reset()
+    state = sim.get_states()
     state = np.reshape(state, [1, nS])
     tot_rewards = 0
     for t_test in range(210):
         action = dqn.test_action(state)
-        nstate, reward, done, _ = envCartPole.step(action)
+        nstate, reward, done, _ = sim.run_single_step()
         nstate = np.reshape( nstate, [1, nS])
         tot_rewards += reward
      
@@ -180,5 +177,6 @@ plt.axvline(x=TRAIN_END, color='y', linestyle='-')
 plt.xlim( (0,EPISODES) )
 plt.ylim( (0,220) )
 plt.show()
+
 
 
