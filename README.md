@@ -48,7 +48,9 @@
 
 ## References:
 - [https://traffic-signal-control.github.io]
-
+- [http://kec.edu.np/wp-content/uploads/2018/10/11.pdf]
+- [https://arxiv.org/abs/2004.11986]
+- [http://ceur-ws.org/Vol-223/53.pdf]
 
 
 
