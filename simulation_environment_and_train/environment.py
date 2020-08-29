@@ -107,6 +107,10 @@ class Simulator():
 
 		return self.state
 
+	def get_action(self);
+		fc = self.eng.get_flow_control()
+		return list(fc)[:1] # convert to list get last
+
 	def simulate(self):
 		self.time_start = time()
 		for i in tqdm(range(500)):
