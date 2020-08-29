@@ -14,23 +14,23 @@
 
 
 ## Project Dependencies
-### Vechicle Detection
+### For Vechicle Detection
 - YOLO 
 
 
-### Simulation
+### For Simulation
 - CityFlow 
 - SUMO 
 
 
 ## Detail on Each Dependencies
-### Vechicle Detection
+### For Vechicle Detection
 #### YOLO 
 ##### Further Dependencies
 - SORT
 
-### Simulation
-#### CityFlow  
+### For Simulation
+#### CityFlow  (build from source)
 ##### Further Dependencies
 - linux
 - CMAKE
@@ -39,7 +39,7 @@
 - `replay_roadnet.json` after engine creatation 
 
 
-#### SUMO 
+#### SUMO (build from source)
 ##### Further Dependencies
 - linux
 - CMAKE
