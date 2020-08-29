@@ -1,28 +1,55 @@
-# RL-based-traffic-synchronization
-
-## Team members:
-- Rashik Shrestha
-- Shrey Niraula
-- Sajil Awale
-
+# TRAFFIC SYNCHRONIZATION IN KATHMANDU USING REINFORCEMENT LEARNING
 ## This is the project under the quantum hack
 
+## Team members:
+- Sajil Awale
+- Rashik Shrestha
+- Shrey Niraula
+
+
 ### Ideas and overall flow
-- The project aims to manage the synchornization of traffic signals
-- may be RL based
-- YOLO detection for vehicles
-- Simple frontend to demonstrate the vehicles state (like Control center in movie !!!)
+- aim: Traffic signal synchronization across the junctions to reduce the traffic jam in Kathmandu using Reinforcement Learning (RL)
+
+- Overall flow: YOLO vehicle detection ---> Simulation & RL ---> Optimized and Synchronized result ---> Deploy in Kathmandu Roads
 
 
+## Project Dependencies
+### Vechicle Detection
+- YOLO 
 
 
+### Simulation
+- CityFlow 
+- SUMO 
 
 
-## CityFlow installation guide
-- use linux system easy
-- go to the cityflow and follow instruction 
+## Detail on Each Dependencies
+### Vechicle Detection
+#### YOLO 
+##### Further Dependencies
+- SORT
+
+		- 
+### Simulation
+#### CityFlow  
+##### Further Dependencies
+- linux
+- CMAKE
 - config file path = 'examples/config.json'
-- in index.html, do not upload `roadnetFile.json`, use `replay_roadnet.json` which is generated after creating the engine object 
+- in index.html, NOT `roadnetFile.json`, BUT `replay_roadnet.json`
+- `replay_roadnet.json` after engine creatation 
+
+
+#### SUMO 
+##### Further Dependencies
+- linux
+- CMAKE
+
+
+
+## References:
+- [https://traffic-signal-control.github.io]
+
 
 
 
