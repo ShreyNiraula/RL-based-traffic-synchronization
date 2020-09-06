@@ -1,11 +1,12 @@
 # TRAFFIC SYNCHRONIZATION IN KATHMANDU USING REINFORCEMENT LEARNING
 ## This is the project under the quantum hack
 
+# DEMO VIDEO [https://www.youtube.com/watch?v=NHan2zTlRLs]
+
 ## Team members:
 - Sajil Awale
 - Rashik Shrestha
 - Shrey Niraula
-
 
 ### Ideas and overall flow
 - aim: Traffic signal synchronization across the junctions to reduce the traffic jam in Kathmandu using Reinforcement Learning (RL)
